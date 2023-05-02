@@ -62,6 +62,7 @@ createApp({
                 }
             ],
             totalShards: 0,
+            shardsKey: 20000,
             
         }
     },

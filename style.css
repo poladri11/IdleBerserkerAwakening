@@ -41,7 +41,6 @@ input[type=number] {
 
 .calc-cont {
     background-color: rgb(240, 240, 240);
-    height: 90%;
     border-radius: 15px;
     padding: 1rem;
 }

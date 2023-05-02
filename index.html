@@ -24,6 +24,8 @@
 
             <div class="calc-cont-body">
                 <h2>Select your current Awakening:</h2>
+                <label for="shardskey">Shards per key:</label>
+                <input type="number" name="shardskey" id="shardskey" v-model="shardsKey">
                 <div class="calc-cont-body-tiers">
 
 
@@ -140,6 +142,7 @@
                 </div>
 
                 <h2>Total of shards needed: {{ totalShards }} <img src="img/assets/shards.png" alt="Icon of shards"></h2>
+                <h2>Total of keys needed: {{ Math.floor(totalShards / shardsKey) }} <img src="img/assets/keys.png" alt="Keys Icon"></h2>
             </div>
 
         </div>
