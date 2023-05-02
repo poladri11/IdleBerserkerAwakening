@@ -45,11 +45,19 @@ input[type=number] {
     padding: 1rem;
 }
 
+
 .calc-cont-body {
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.calc-cont-body-shardsKey {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.6rem;
+    color: rgb(121, 5, 5);
 }
 
 .calc-cont-body-tiers {

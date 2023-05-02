@@ -21,13 +21,15 @@
                 <h1>Idle Berserker Awakening Calculator</h1>
 
             </div>
-
+            
             <div class="calc-cont-body">
+                <div class="calc-cont-body-shardsKey">
+                    <label for="shardskey">Shards per key:</label>
+                    <input type="number" name="shardskey" id="shardskey" v-model="shardsKey">
+                </div>
                 <h2>Select your current Awakening:</h2>
-                <label for="shardskey">Shards per key:</label>
-                <input type="number" name="shardskey" id="shardskey" v-model="shardsKey">
                 <div class="calc-cont-body-tiers">
-
+                    
 
                     <div @click="tier = 'B'; nextTier = 'A'; getTier()" class="calc-cont-body-tier"  :class="tier == 'B' ? active : null" >
                         <img src="img/tiers/B.PNG" alt="B tier">
