@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Berserker Awakening</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <main class="main">
+
+        <div class="calc-cont" id="app">
+
+            <div class="calc-cont-head">
+                <h1>Idle Berserker Awakening Calculator</h1>
+
+            </div>
+
+            <div class="calc-cont-body">
+                <h2>Select your current Awakening:</h2>
+                <div class="calc-cont-body-tiers">
+
+
+                    <div @click="tier = 'B'; nextTier = 'A'; getTier()" class="calc-cont-body-tier"  :class="tier == 'B' ? active : null" >
+                        <img src="img/tiers/B.PNG" alt="B tier">
+                    </div>
+
+                    <div @click="tier = 'A'; nextTier = 'S'; getTier()"  :class="tier == 'A' ? active : null" class="calc-cont-body-tier">
+                        <img src="img/tiers/A.PNG" alt="B tier">
+                    </div>
+
+                    <div @click="tier = 'S'; nextTier = 'SR'; getTier()"  :class="tier == 'S' ? active : null" class="calc-cont-body-tier">
+                        <img src="img/tiers/S.PNG" alt="B tier">
+                    </div>
+
+                    <div  @click="tier = 'SR'; nextTier = 'SSR'; getTier()"  :class="tier == 'SR' ? active : null" class="calc-cont-body-tier">
+                        <img src="img/tiers/SR.PNG" alt="B tier">
+                    </div>
+
+                </div>    
+            
+                <div class="calc-cont-body-abilities">
+                    
+                    <div class="calc-cont-body-abilitie">
+                        <div class="calc-cont-body-abilitie-input">
+                            <label for="attack">Attack:</label>
+                            <input @keyup="getShards(this.currentAtt)" type="number"  :min="minAbil " :max="maxAbil" name="attack" id="attack" v-model="currentAtt.value">
+                        </div>
+                        <p>Lv. {{ currentAtt.value }} / {{ maxAbil }}</p>
+
+                        <div class="calc-cont-body-abilitie-shards">
+                            <img src="img/assets/shards.png" alt="Shards Icon">
+                            <p>
+                                {{ currentAtt.shardsLeft }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-cont-body-abilitie">
+                        <div class="calc-cont-body-abilitie-input">
+                            <label for="skill">Skill Dmg:</label>
+                            <input @keyup="getShards(this.currentSkill)" type="number"  :min="minAbil " :max="maxAbil" name="skill" id="skill" v-model="currentSkill.value">
+                        </div>
+                        <p>Lv. {{ currentSkill.value }} / {{ maxAbil }}</p>
+
+                        <div class="calc-cont-body-abilitie-shards">
+                            <img src="img/assets/shards.png" alt="Shards Icon">
+                            <p>
+                                {{ currentSkill.shardsLeft }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-cont-body-abilitie">
+                        <div class="calc-cont-body-abilitie-input">
+                            <label for="Boss">Boss Dmg:</label>
+                            <input @keyup="getShards(this.currentBoss)" type="number"  :min="minAbil " :max="maxAbil" name="Boss" id="Boss" v-model="currentBoss.value">
+                        </div>
+                        <p>Lv. {{ currentBoss.value }} / {{ maxAbil }}</p>
+
+                        <div class="calc-cont-body-abilitie-shards">
+                            <img src="img/assets/shards.png" alt="Shards Icon">
+                            <p>
+                                {{ currentBoss.shardsLeft }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-cont-body-abilitie">
+                        <div class="calc-cont-body-abilitie-input">
+                            <label for="BerserkAtt">Berserk Att:</label>
+                            <input @keyup="getShards(this.currentBerserkAtt)" type="number"  :min="minAbil " :max="maxAbil" name="BerserkAtt" id="BerserkAtt" v-model="currentBerserkAtt.value">
+                        </div>
+                        <p>Lv. {{ currentBerserkAtt.value }} / {{ maxAbil }}</p>
+
+                        <div class="calc-cont-body-abilitie-shards">
+                            <img src="img/assets/shards.png" alt="Shards Icon">
+                            <p>
+                                {{ currentBerserkAtt.shardsLeft }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-cont-body-abilitie">
+                        <div class="calc-cont-body-abilitie-input">
+                            <label for="Health">Health:</label>
+                            <input @keyup="getShards(this.currentHealth)" type="number"  :min="minAbil " :max="maxAbil" name="Health" id="Health" v-model="currentHealth.value">
+                        </div>
+                        <p>Lv. {{ currentHealth.value }} / {{ maxAbil }}</p>
+
+                        <div class="calc-cont-body-abilitie-shards">
+                            <img src="img/assets/shards.png" alt="Shards Icon">
+                            <p>
+                                {{ currentHealth.shardsLeft }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-cont-body-abilitie">
+                        <div class="calc-cont-body-abilitie-input">
+                            <label for="BerserkCrit">Berserk Crit:</label>
+                            <input @keyup="getShards(this.currentBerserkCrit)" type="number"  :min="minAbil " :max="maxAbil" name="BerserkCrit" id="BerserkCrit" v-model="currentBerserkCrit.value">
+                        </div>
+                        <p>Lv. {{ currentBerserkCrit.value }} / {{ maxAbil }}</p>
+
+                        <div class="calc-cont-body-abilitie-shards">
+                            <img src="img/assets/shards.png" alt="Shards Icon">
+                            <p>
+                                {{ currentBerserkCrit.shardsLeft }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <h2>Total of shards needed: {{ totalShards }} <img src="img/assets/shards.png" alt="Icon of shards"></h2>
+            </div>
+
+        </div>
+        
+    </main>
+
+    <script src="js.js"></script>
+</body>
+</html>
